@@ -9,6 +9,12 @@ export interface PokemonSprites {
 export interface Pokemon {
   id: number;
   name: string;
-  sprites: PokemonSprites;
-  types: PokemonType[];
+  sprites: {
+    front_default?: string;
+    [key: string]: string | undefined;
+  };
+  types: { type: { name: string } }[];
+
+  evolutions?: string[];
+  locations?: string[];
 }
