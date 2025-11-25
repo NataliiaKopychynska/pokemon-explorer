@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import type { Pokemon } from "../utils/types";
-import { getPokemon, getPokemonById } from "../api";
+import { getPokemonById } from "../api";
 
 interface Props {
   isOpen: boolean;
