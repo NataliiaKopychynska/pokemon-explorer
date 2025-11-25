@@ -1,73 +1,101 @@
-# React + TypeScript + Vite
+# Pokémon Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple React application to browse and search Pokémon. Users can filter by type, search by name, and view detailed information in a modal.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+* Browse Pokémon in a grid layout.
+* Filter Pokémon by type.
+* Search Pokémon by name.
+* Click on a Pokémon to open a modal with details:
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+  * Sprites/images
+  * Evolutions
+  * Locations
+* Load more Pokémon with pagination.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+* **React** + **TypeScript**
+* **Tailwind CSS** for styling
+* **Headless UI** for modal component
+* **PokéAPI** as data source
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/pokemon-explorer.git
+cd pokemon-explorer
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Install dependencies:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+# or
+yarn
 ```
+
+3. Run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+Open `http://localhost:5173` in your browser.
+
+---
+
+## Project Structure
+
+```
+src/
+ ├─ api/           # API functions (getPokemon, getPokemonById)
+ ├─ components/    # Reusable components (PokemonCard, PokemonList, Modal, SearchBar, TypeFilter)
+ ├─ pages/         # Page components (HomeP)
+ ├─ utils/         # Types, constants (typeColors)
+ └─ App.tsx
+```
+
+---
+
+## API Usage
+
+* **PokéAPI**: `https://pokeapi.co/api/v2/`
+* `getPokemon(name: string)`: fetch Pokémon details by name.
+* `getPokemonById(id: number)`: fetch Pokémon details by ID.
+
+---
+
+## How to Use
+
+1. Browse the Pokémon grid.
+2. Filter by type using the type buttons.
+3. Search by name using the search bar.
+4. Click on a Pokémon card to see detailed info in a modal.
+5. Use "Load More" to fetch additional Pokémon.
+
+---
+
+## Notes
+
+* The modal loads Pokémon data by ID asynchronously.
+* Background colors of Pokémon cards match their type(s) using a gradient if multiple types.
+* Loading states are shown when fetching Pokémon details.
+
+---
+
+## License
+
+This project is licensed under the MIT License.
+
